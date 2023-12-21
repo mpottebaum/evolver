@@ -7,4 +7,5 @@ type Ecosystem struct {
 }
 
 type Environment struct {
+	Climate string
 }
