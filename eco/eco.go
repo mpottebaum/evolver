@@ -6,6 +6,12 @@ import (
 
 var PhenotypeLib = map[string][]models.Gene{
 	// <name>: <genes>
+	"size": {
+		models.Gene{
+			Dominant:  "small",
+			Recessive: "large",
+		},
+	},
 }
 
 //	inputs:
