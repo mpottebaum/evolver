@@ -1,7 +1,7 @@
 package eco
 
 import (
-	models "evolver/models"
+	"evolver/models"
 )
 
 var PhenotypeLib = map[string][]models.Gene{
@@ -54,7 +54,7 @@ func CreateEcosystem(environmentConfig []string, speciesConfigs [][]string) mode
 	}
 
 	return models.Ecosystem{
-		Year:        1,
+		Years:       0,
 		Environment: environment,
 		Species:     species,
 	}

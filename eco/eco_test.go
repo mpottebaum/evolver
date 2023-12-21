@@ -8,7 +8,7 @@ import (
 func TestCreateEcosystem(t *testing.T) {
 	t.Logf("CreateEcosystem")
 
-	expectedYear := 1
+	expectedYear := 0
 	expectedSpecies := models.Species{
 		Name: "dopeness",
 		Type: "animal",
@@ -39,8 +39,8 @@ func TestCreateEcosystem(t *testing.T) {
 		},
 	}
 	result := CreateEcosystem(envConfig, speciesConfigs)
-	if result.Year != 1 {
-		t.Logf("Year - exp: %v | rec: %v", expectedYear, result.Year)
+	if result.Years != expectedYear {
+		t.Logf("Year - exp: %v | rec: %v", expectedYear, result.Years)
 		t.Fail()
 	}
 	species := result.Species[0]

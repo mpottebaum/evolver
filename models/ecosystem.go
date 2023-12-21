@@ -1,7 +1,7 @@
 package models
 
 type Ecosystem struct {
-	Year        int
+	Years       int
 	Species     []Species
 	Environment Environment
 }

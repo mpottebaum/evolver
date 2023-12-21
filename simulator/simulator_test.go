@@ -1,13 +1,40 @@
 package simulator
 
 import (
+	"evolver/models"
 	"testing"
 )
 
-func TestSimulator(t *testing.T) {
-	want := 1
-	num := Simulate()
-	if num != want {
-		t.Fatalf("Simulate - received %v, expected %v", num, want)
+var ecosystem = models.Ecosystem{
+	Years: 0,
+	Environment: models.Environment{
+		Climate: "arid",
+	},
+	Species: []models.Species{
+		{
+			Name: "dopeness",
+			Type: "animal",
+			GeneticCode: []models.Phenotype{
+				{
+					Name: "size",
+					Genes: []models.Gene{
+						{
+							Dominant:  "small",
+							Recessive: "large",
+						},
+					},
+				},
+			},
+		},
+	},
+}
+
+func TestSimulatorYear(t *testing.T) {
+	t.Logf("Simulator increments year")
+	expectedYears := 10
+	result := Simulate(ecosystem, expectedYears)
+	if result.Years != expectedYears {
+		t.Logf("Simulator year increments - exp: %v | rec: %v", expectedYears, result.Years)
+		t.Fail()
 	}
 }
