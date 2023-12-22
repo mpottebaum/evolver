@@ -7,6 +7,12 @@ type Ecosystem struct {
 	Populations []Population
 }
 
-type Environment struct {
-	Climate string
+// mating season
+func (e Ecosystem) Summer() Ecosystem {
+	return e
+}
+
+// survival of the fittest
+func (e Ecosystem) Winter() Ecosystem {
+	return e
 }

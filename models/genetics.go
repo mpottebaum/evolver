@@ -26,11 +26,9 @@ type Phenotype struct {
 }
 
 type Gene struct {
-	Dominant  string
-	Recessive string
+	Dominant, Recessive string
 }
 
 type Genotype struct {
-	Father string
-	Mother string
+	Father, Mother string
 }
