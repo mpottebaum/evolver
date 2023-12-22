@@ -9,12 +9,15 @@ type Species struct {
 type Population struct {
 	Species   Species
 	Organisms []Organism
+	Zone      Zone
 }
 
 type Organism struct {
-	Id        string
-	Name      string
-	Genotypes []Genotype
+	Id          string
+	Name        string
+	Age         int
+	Coordinates Coordinates
+	Genotypes   []Genotype
 }
 
 type Phenotype struct {
