@@ -2,8 +2,9 @@ package models
 
 type Ecosystem struct {
 	Years       int
-	Species     []Species
 	Environment Environment
+	Species     []Species
+	Populations []Population
 }
 
 type Environment struct {

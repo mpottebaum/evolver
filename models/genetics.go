@@ -6,6 +6,11 @@ type Species struct {
 	GeneticCode []Phenotype
 }
 
+type Population struct {
+	Species   Species
+	Organisms []Organism
+}
+
 type Organism struct {
 	Id        string
 	Name      string

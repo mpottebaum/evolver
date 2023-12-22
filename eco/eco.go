@@ -52,10 +52,19 @@ func CreateEcosystem(environmentConfig []string, speciesConfigs [][]string) mode
 		// add species to ecosystem's species slice
 		species = append(species, newSpecies)
 	}
+	// create one population struct per species
+	populations := []models.Population{}
+	for _, s := range species {
+		pop := models.Population{
+			Species: s,
+		}
+		populations = append(populations, pop)
+	}
 
 	return models.Ecosystem{
 		Years:       0,
 		Environment: environment,
 		Species:     species,
+		Populations: populations,
 	}
 }
