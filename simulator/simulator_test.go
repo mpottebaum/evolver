@@ -30,7 +30,6 @@ var ecosystem = models.Ecosystem{
 }
 
 func TestSimulatorYear(t *testing.T) {
-	t.Logf("Simulator increments year")
 	expectedYears := 10
 	result := Simulate(ecosystem, expectedYears)
 	if result.Years != expectedYears {

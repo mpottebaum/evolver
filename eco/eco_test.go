@@ -7,8 +7,6 @@ import (
 )
 
 func TestCreateEcosystem(t *testing.T) {
-	t.Logf("CreateEcosystem")
-
 	startQuad := "Q1"
 
 	expectedYear := 0

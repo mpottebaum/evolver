@@ -5,7 +5,6 @@ import (
 )
 
 func TestCreateGrid(t *testing.T) {
-	t.Logf("CreateGrid")
 	startQuad := "Q1"
 
 	result := CreateGrid(startQuad)
