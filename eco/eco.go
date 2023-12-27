@@ -16,13 +16,13 @@ var PhenotypeLib = map[string][]models.Gene{
 
 //	inputs:
 //		species genetic codes and genotype frequencies,
-//			[][]string [['species name','species type','phenotype name',],['species name','phenotype name',]]
+//			[][]string [['species name','species type', 'phenotype name',],['species name','phenotype name',]]
 //		environment
 //			[]string ['climate']
 //	outputs:
 //		ecosystem with species and environment
 
-func CreateEcosystem(environmentConfig []string, speciesConfigs [][]string) models.Ecosystem {
+func CreateEcosystem(environmentConfig []string, speciesConfigs [][]string, grid models.Grid) models.Ecosystem {
 	// create environment
 	environment := models.Environment{
 		Climate: environmentConfig[0],
@@ -53,18 +53,21 @@ func CreateEcosystem(environmentConfig []string, speciesConfigs [][]string) mode
 		species = append(species, newSpecies)
 	}
 	// create one population struct per species
-	populations := []models.Population{}
-	for _, s := range species {
+	for i := range species {
+		// randomize zone within Q1
+		zone := grid.CreatePopulationZone(grid.StartQuadrant, 50)
 		pop := models.Population{
-			Species: s,
+			Zone:     zone,
+			Quadrant: grid.StartQuadrant,
 		}
-		populations = append(populations, pop)
+		species[i].Populations = []models.Population{
+			pop,
+		}
 	}
 
 	return models.Ecosystem{
 		Years:       0,
 		Environment: environment,
 		Species:     species,
-		Populations: populations,
 	}
 }

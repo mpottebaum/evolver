@@ -1,12 +1,15 @@
 package eco
 
 import (
+	"evolver/grid"
 	"evolver/models"
 	"testing"
 )
 
 func TestCreateEcosystem(t *testing.T) {
 	t.Logf("CreateEcosystem")
+
+	startQuad := "Q1"
 
 	expectedYear := 0
 	expectedEnv := models.Environment{
@@ -26,9 +29,11 @@ func TestCreateEcosystem(t *testing.T) {
 				},
 			},
 		},
-	}
-	expectedPop := models.Population{
-		Species: expectedSpecies,
+		Populations: []models.Population{
+			{
+				Quadrant: startQuad,
+			},
+		},
 	}
 
 	envConfig := []string{
@@ -41,7 +46,8 @@ func TestCreateEcosystem(t *testing.T) {
 			expectedSpecies.GeneticCode[0].Name,
 		},
 	}
-	result := CreateEcosystem(envConfig, speciesConfigs)
+	grid := grid.CreateGrid(startQuad)
+	result := CreateEcosystem(envConfig, speciesConfigs, grid)
 	if result.Years != expectedYear {
 		t.Logf("Year - exp: %v | rec: %v", expectedYear, result.Years)
 		t.Fail()
@@ -55,8 +61,9 @@ func TestCreateEcosystem(t *testing.T) {
 		t.Logf("Species - exp: %v | rec: %v", expectedSpecies, species)
 		t.Fail()
 	}
-	if pops := result.Populations[0]; pops.Species.Name != expectedSpecies.Name {
-		t.Logf("Populations - exp: %v | rec: %v", expectedPop, pops)
+	if pops := species.Populations[0]; pops.Quadrant != startQuad || pops.Zone[0] < grid.Quadrants[pops.Quadrant][0] || pops.Zone[1] < grid.Quadrants[pops.Quadrant][1] || pops.Zone[2] > grid.Quadrants[pops.Quadrant][2] || pops.Zone[3] > grid.Quadrants[pops.Quadrant][3] {
+		t.Logf("Populations - exp: %v | rec: %v", expectedSpecies.Populations[0], pops)
+		t.Logf("Start Quadrant: %v", grid.Quadrants[pops.Quadrant])
 		t.Fail()
 	}
 }

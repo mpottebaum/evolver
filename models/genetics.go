@@ -4,12 +4,13 @@ type Species struct {
 	Name        string
 	Type        string
 	GeneticCode []Phenotype
+	Populations []Population
 }
 
 type Population struct {
-	Species   Species
 	Organisms []Organism
 	Zone      Zone
+	Quadrant  string
 }
 
 type Organism struct {
